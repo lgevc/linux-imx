@@ -190,6 +190,12 @@
 			reg = <0x00905000 0x1B000>;
 		};
 
+		ocram_optee: sram@00918000 {
+			compatible = "fsl,optee-lpm-sram";
+			reg = <0x00918000 0x8000>;
+			overw_reg = <&ocram 0x00905000 0x13000>;
+		};
+
 		dma_apbh: dma-apbh@01804000 {
 			compatible = "fsl,imx6ul-dma-apbh", "fsl,imx28-dma-apbh";
 			reg = <0x01804000 0x2000>;
@@ -865,6 +871,7 @@
 				clocks = <&clks IMX6UL_CLK_CAAM_IPG>, <&clks IMX6UL_CLK_CAAM_ACLK>,
 				       	 <&clks IMX6UL_CLK_CAAM_MEM>;
 				clock-names = "caam_ipg", "caam_aclk", "caam_mem";
+				status = "disabled";
 
 				sec_jr0: jr0@1000 {
 					compatible = "fsl,sec-v4.0-job-ring";

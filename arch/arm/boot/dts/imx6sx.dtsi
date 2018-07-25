@@ -209,6 +209,15 @@
 			clocks = <&clks IMX6SX_CLK_OCRAM>;
 		};
 
+		ocram_optee {
+			compatible = "fsl,optee-lpm-sram";
+			reg = <0x008f8000 0x4000>;
+			overw_reg = <&ocrams_ddr 0x00904000 0x1000>,
+					<&ocram 0x00905000 0x1b000>,
+					<&ocrams 0x00900000 0x4000>;
+			overw_clock = <&ocrams &clks IMX6SX_CLK_OCRAM>;
+		};
+
 		L2: l2-cache@00a02000 {
 			compatible = "arm,pl310-cache";
 			reg = <0x00a02000 0x1000>;
@@ -929,6 +938,7 @@
 				clocks = <&clks IMX6SX_CLK_CAAM_MEM>, <&clks IMX6SX_CLK_CAAM_ACLK>,
 				         <&clks IMX6SX_CLK_CAAM_IPG> ,<&clks IMX6SX_CLK_EIM_SLOW>;
 				clock-names = "caam_mem", "caam_aclk", "caam_ipg", "caam_emi_slow";
+                                status = "disabled";
 
 				sec_jr0: jr0@1000 {
 					compatible = "fsl,sec-v4.0-job-ring";
